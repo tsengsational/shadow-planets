@@ -43,7 +43,7 @@ function shadow(orb) {
   const yWalk = Math.round(y/10)
   const blur = Math.abs(xWalk + yWalk)
   console.log(blur)
-  let calculated = `${xWalk}px ${yWalk}px ${blur}px 3px, inset ${-xWalk/5}px ${-yWalk/5}px ${blur/2}px ${blur/3}px rgba(50, 50, 50, .5), inset ${-xWalk/5}px ${-yWalk/5}px ${blur/3}px ${blur/6}px rgba(0, 0, 0, .5)`
+  let calculated = `${xWalk}px ${yWalk}px ${blur}px 3px, inset ${-xWalk/5}px ${-yWalk/5}px ${blur}px ${blur/3}px rgba(50, 50, 50, .5), inset ${-xWalk/5}px ${-yWalk/5}px ${blur/3}px ${blur/6}px rgba(0, 0, 0, .5)`
 
   orb.style.boxShadow = calculated
 }
