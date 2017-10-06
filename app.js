@@ -42,15 +42,19 @@ function keyMove(event) {
   switch(key){
     case 38:
       document.documentElement.style.setProperty('--sun-top', `${y - 10}px`)
+      orbs.forEach(orb => shadow(orb))
       break;
     case 40:
-    document.documentElement.style.setProperty('--sun-top', `${y + 10}px`)
+      document.documentElement.style.setProperty('--sun-top', `${y + 10}px`)
+      orbs.forEach(orb => shadow(orb))
       break;
     case 39:
       document.documentElement.style.setProperty('--sun-left', `${x + 10}px`)
+      orbs.forEach(orb => shadow(orb))
       break;
     case 37:
-    document.documentElement.style.setProperty('--sun-left', `${x - 10}px`)
+      document.documentElement.style.setProperty('--sun-left', `${x - 10}px`)
+      orbs.forEach(orb => shadow(orb))
       break;
     default:
       break;
