@@ -15,6 +15,7 @@ let moving = false;
 sun.addEventListener('mousedown', drag);
 sun.addEventListener('mouseup', end);
 sun.addEventListener('mouseleave', end);
+document.documentElement.addEventListener('keydown', keyMove)
 
 function drag(event) {
   hide(instructions)
@@ -31,6 +32,29 @@ function drag(event) {
       orbs.forEach(orb => shadow(orb))
     }
   })
+}
+
+function keyMove(event) {
+  let y = parseInt(document.documentElement.style.getPropertyValue('--sun-top').split('px')[0])
+  let x = parseInt(document.documentElement.style.getPropertyValue('--sun-left').split('px')[0])
+  let key = event.keyCode
+  console.log(x, y, key)
+  switch(key){
+    case 38:
+      document.documentElement.style.setProperty('--sun-top', `${y - 10}px`)
+      break;
+    case 40:
+    document.documentElement.style.setProperty('--sun-top', `${y + 10}px`)
+      break;
+    case 39:
+      document.documentElement.style.setProperty('--sun-left', `${x + 10}px`)
+      break;
+    case 37:
+    document.documentElement.style.setProperty('--sun-left', `${x - 10}px`)
+      break;
+    default:
+      break;
+  }
 }
 
 function hide(element){
@@ -52,7 +76,6 @@ function shadow(orb) {
   const xWalk = Math.round(x/10)
   const yWalk = Math.round(y/10)
   const blur = Math.abs(xWalk + yWalk)
-  console.log(blur)
   let calculated = `${xWalk}px ${yWalk}px ${blur}px 3px, inset ${-xWalk/5}px ${-yWalk/5}px ${blur}px ${blur/3}px rgba(50, 50, 50, .5), inset ${-xWalk/5}px ${-yWalk/5}px ${blur/3}px ${blur/6}px rgba(0, 0, 0, .5)`
 
   orb.style.boxShadow = calculated
