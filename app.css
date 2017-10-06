@@ -28,8 +28,26 @@ body {
   box-shadow: 10px 10px 10px 3px, inset -5px -5px 20px 5px rgba(50, 50, 50, .5);
 }
 
+.instructions {
+  position: fixed;
+  left: 35%;
+  top: 25%;
+  color: white;
+  width: 30%;
+  text-align: center;
+  transition: all 2s;
+  opacity: 1;
+  font-family: 'Poiret One', cursive;
+  font-size: 1.5em;
+  text-shadow: 10px 10px 30px black;
+}
+
+.hidden {
+  opacity: 0;
+}
+
 .sun {
-  background-color: yellow;
+  background-image: radial-gradient(circle, #ffffff 0%, yellow 90%);
   position: fixed;
   z-index: 1;
   width: 50px;

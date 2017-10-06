@@ -2,7 +2,12 @@ console.log('loading')
 const sun = document.querySelector('.sun')
 const orbs = document.querySelectorAll('.cell')
 const walk = 100
+const instructions = document.querySelector('.instructions')
+const windowWidth = window.innerWidth
+const windowHeight = window.innerHeight
 
+document.documentElement.style.setProperty('--sun-top', `${(windowHeight /2) - 25}px`)
+document.documentElement.style.setProperty('--sun-left', `${(windowWidth / 2) - 25}px`)
 orbs.forEach(orb => shadow(orb))
 
 let moving = false;
@@ -12,6 +17,7 @@ sun.addEventListener('mouseup', end);
 sun.addEventListener('mouseleave', end);
 
 function drag(event) {
+  hide(instructions)
   moving = true;
   let width = this.offsetWidth / 2
   let height = this.offsetHeight / 2
@@ -25,6 +31,10 @@ function drag(event) {
       orbs.forEach(orb => shadow(orb))
     }
   })
+}
+
+function hide(element){
+  element.classList.add('hidden')
 }
 
 function end(event) {
