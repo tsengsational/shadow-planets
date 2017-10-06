@@ -56,7 +56,7 @@ body {
   top: var(--sun-top);
   left: var(--sun-left);
   box-shadow: 0 0 30px 15px rgba(255, 251, 147, .5), 0 0 60px 45px rgba(255, 255, 255, .3);
-  animation-duration: 10s;
+  animation-duration: 7s;
   animation-name: pulse;
   animation-iteration-count: infinite;
 }
