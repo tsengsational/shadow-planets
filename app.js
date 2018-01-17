@@ -9,7 +9,6 @@ let sunOffset = 25
 
 if (windowWidth <= 600) {
   sunOffset = 12.5
-  console.log(sunOffset)
 }
 
 document.documentElement.style.setProperty('--sun-top', `${(windowHeight /2) - sunOffset}px`)
@@ -54,7 +53,6 @@ function sunMove(e){
   if( moving ) {
     let x = clientX - width;
     let y = clientY - height;
-    console.log('coordinates', x, y)
     document.documentElement.style.setProperty('--sun-top', `${y}px`)
     document.documentElement.style.setProperty('--sun-left', `${x}px`)
 
@@ -66,7 +64,6 @@ function keyMove(event) {
   let y = parseInt(document.documentElement.style.getPropertyValue('--sun-top').split('px')[0])
   let x = parseInt(document.documentElement.style.getPropertyValue('--sun-left').split('px')[0])
   let key = event.keyCode
-  console.log(x, y, key)
   switch(key){
     case 38:
       document.documentElement.style.setProperty('--sun-top', `${y - 10}px`)
