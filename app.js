@@ -5,9 +5,15 @@ const walk = 100
 const instructions = document.querySelector('.instructions')
 const windowWidth = window.innerWidth
 const windowHeight = window.innerHeight
+let sunOffset = 25
 
-document.documentElement.style.setProperty('--sun-top', `${(windowHeight /2) - 25}px`)
-document.documentElement.style.setProperty('--sun-left', `${(windowWidth / 2) - 25}px`)
+if (windowWidth <= 600) {
+  sunOffset = 12.5
+  console.log(sunOffset)
+}
+
+document.documentElement.style.setProperty('--sun-top', `${(windowHeight /2) - sunOffset}px`)
+document.documentElement.style.setProperty('--sun-left', `${(windowWidth / 2) - sunOffset}px`)
 orbs.forEach(orb => shadow(orb))
 
 let moving = false;
@@ -15,23 +21,45 @@ let moving = false;
 sun.addEventListener('mousedown', drag);
 sun.addEventListener('mouseup', end);
 sun.addEventListener('mouseleave', end);
+document.ontouchstart = drag;
+document.ontouchend = end;
 document.documentElement.addEventListener('keydown', keyMove)
 
 function drag(event) {
   hide(instructions)
   moving = true;
-  let width = this.offsetWidth / 2
-  let height = this.offsetHeight / 2
-  sun.addEventListener('mousemove', (e) => {
-    if( moving ) {
-      let x = e.clientX - width;
-      let y = e.clientY - height;
-      document.documentElement.style.setProperty('--sun-top', `${y}px`)
-      document.documentElement.style.setProperty('--sun-left', `${x}px`)
+  sun.addEventListener('mousemove', sunMove)
+  sun.ontouchmove = sunMove;
+}
 
-      orbs.forEach(orb => shadow(orb))
-    }
-  })
+function sunMove(e){
+  let clientX, clientY
+  let width = 25
+  let height = 25
+  if (sunOffset === 25){
+    width = this.offsetWidth / 2
+    height = this.offsetHeight / 2
+  } else {
+    width = this.offsetWidth
+    height = this.offsetHeight
+  }
+  if (e.touches) {
+    clientX = e.touches[0].pageX;
+    clientY = e.touches[0].pageY
+  } else {
+    clientX = e.clientX
+    clientY = e.clientY
+  }
+
+  if( moving ) {
+    let x = clientX - width;
+    let y = clientY - height;
+    console.log('coordinates', x, y)
+    document.documentElement.style.setProperty('--sun-top', `${y}px`)
+    document.documentElement.style.setProperty('--sun-left', `${x}px`)
+
+    orbs.forEach(orb => shadow(orb))
+  }
 }
 
 function keyMove(event) {
